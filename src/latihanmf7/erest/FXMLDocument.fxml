@@ -1,55 +1,280 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.collections.*?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400" prefWidth="600" xmlns:fx="http://javafx.com/fxml/1" fx:controller="latihanmf7.erest.FXMLDocumentController">
-      <children>
-        <Label layoutX="30.0" layoutY="30.0" text="Customer Name:">
-        </Label>
-        <TextField fx:id="customerNameField" layoutX="150.0" layoutY="30.0"/>
-
-        <Label layoutX="30.0" layoutY="70.0" text="Quantity:">
-        </Label>
-        <TextField fx:id="quantityField" layoutX="150.0" layoutY="70.0"/>
-
-        <Label layoutX="30.0" layoutY="110.0" text="Destination:">
-        </Label>
-        <ComboBox fx:id="destinationComboBox" layoutX="150.0" layoutY="110.0">
-            <items>
-                <FXCollections fx:factory="observableArrayList">
-                    <String fx:value="USA"/>
-                    <String fx:value= "Japan"/>
-                    <String fx:value= "Singapore"/>
-                </FXCollections>
-            </items>
-        </ComboBox>
-
-        <Label layoutX= "30" layoutY = "150" text = "Payment Method:">
-        </Label>
-        	<ComboBox fx:id = "paymentMethodComboBox" layoutX = "150" layoutY = "150">
-        		<items>
-        			<FXCollections fx:factory="observableArrayList">
-        				<String fx:value="Cash"/>
-        				<String fx:value="Credit Card"/>
-        			</FXCollections>
-        		</items>
-        	</ComboBox>
-
-        <Button layoutX="30.0" layoutY="190.0" onAction="#calculateTotalPrice" text="Calculate Total Price"/>
-
-        <Label fx:id="totalPriceLabel" layoutX="30.0" layoutY="230.0"></Label>
-
-        <Button layoutX="30.0" layoutY="270.0" onAction="#placeOrder" text="Place Order"/>
-    </children>
-</AnchorPane>
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="latihanmf7.erest.FXMLDocumentController">
+  <tabs>
+    <Tab text="Form Pembelian">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label text="Customer Name:" />
+                  <TextField fx:id="customerNameField" />
+                  <Label text="Quantity:" />
+                  <TextField fx:id="quantityField" />
+                  <Label text="Destination:" />
+                  <ComboBox fx:id="destinationComboBox">
+                     <items>
+                        <FXCollections fx:factory="observableArrayList">
+                           <String fx:value="USA" />
+                           <String fx:value="Japan" />
+                           <String fx:value="Singapore" />
+                        </FXCollections>
+                     </items>
+                  </ComboBox>
+                  <Label text="Payment Method:" />
+                  <ComboBox fx:id="paymentMethodComboBox">
+                     <items>
+                        <FXCollections fx:factory="observableArrayList">
+                           <String fx:value="Cash" />
+                           <String fx:value="Credit Card" />
+                        </FXCollections>
+                     </items>
+                  </ComboBox>
+                  <Button onAction="#calculateTotalPrice" text="Calculate Total Price" />
+                  <Label fx:id="totalPriceLabel" prefHeight="17.0" prefWidth="20.0" />
+                  <Button onAction="#placeOrder" text="Place Order" />
+                  <Separator orientation="VERTICAL" prefHeight="386.0" prefWidth="6.0" />
+               </children></AnchorPane>
+      </content>
+    </Tab>
+    <Tab text="Output">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label text="Nama">
+                     <font>
+                        <Font name="Voyager Light" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text="Destinasi">
+                     <font>
+                        <Font name="Voyager Light" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text="Metode Pembayaran">
+                     <font>
+                        <Font name="Voyager Light" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text="Biaya Masuk">
+                     <font>
+                        <Font name="Voyager Light" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text="Harga Tiket">
+                     <font>
+                        <Font name="Voyager Light" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label prefWidth="643.0" text="----------------------------------------------------------------------------- +">
+                     <font>
+                        <Font name="Voyager Light" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text="Subtotal">
+                     <font>
+                        <Font name="Voyager Light" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text="Pajak">
+                     <font>
+                        <Font name="Voyager Light" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text="Bayar">
+                     <font>
+                        <Font name="Voyager Light" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text=":">
+                     <font>
+                        <Font name="Voyager Light" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text=":">
+                     <font>
+                        <Font name="Voyager Light" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text=":">
+                     <font>
+                        <Font name="Voyager Light" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text=":">
+                     <font>
+                        <Font name="Voyager Light" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text=":">
+                     <font>
+                        <Font name="Voyager Light" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text=":">
+                     <font>
+                        <Font name="Voyager Light" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text=":">
+                     <font>
+                        <Font name="Voyager Light" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text=":">
+                     <font>
+                        <Font name="Voyager Light" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="costumer_name" text="LABEL">
+                     <font>
+                        <Font name="Voyager Light" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="destinationlbl" text="LABEL">
+                     <font>
+                        <Font name="Voyager Light" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="paymentmetod" text="LABEL">
+                     <font>
+                        <Font name="Voyager Light" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="entryfreelbl" text="LABEL">
+                     <font>
+                        <Font name="Voyager Light" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="tickefeelbl" text="LABEL">
+                     <font>
+                        <Font name="Voyager Light" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="subtotallbl" text="LABEL">
+                     <font>
+                        <Font name="Voyager Light" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="taxlbl" text="LABEL">
+                     <font>
+                        <Font name="Voyager Light" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="paymentslbl" text="LABEL">
+                     <font>
+                        <Font name="Voyager Light" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text="X">
+                     <font>
+                        <Font name="Voyager Light" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="qtyentreefeelbl" text="LABEL">
+                     <font>
+                        <Font name="Voyager Light" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text="X">
+                     <font>
+                        <Font name="Voyager Light" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="qtyticketfeelbl" text="LABEL">
+                     <font>
+                        <Font name="Voyager Light" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text="=">
+                     <font>
+                        <Font name="Voyager Light" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text="=">
+                     <font>
+                        <Font name="Voyager Light" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="totalentryfreelbl" text="LABEL">
+                     <font>
+                        <Font name="Voyager Light" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="totalticketfeelbl" text="LABEL">
+                     <font>
+                        <Font name="Voyager Light" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label prefWidth="643.0" text="----------------------------------------------------------------------------- +">
+                     <font>
+                        <Font name="Voyager Light" size="14.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="closebtnoutput" mnemonicParsing="false" onAction="#closeclick" style="-fx-background-color: olive; -fx-cursor: hand;" text="Keluar" textFill="WHITE">
+                     <effect>
+                        <Glow level="0.69">
+                           <input>
+                              <DropShadow>
+                                 <input>
+                                    <Lighting>
+                                       <bumpInput>
+                                          <Shadow />
+                                       </bumpInput>
+                                       <light>
+                                          <Light.Distant />
+                                       </light>
+                                    </Lighting>
+                                 </input>
+                              </DropShadow>
+                           </input>
+                        </Glow>
+                     </effect>
+                     <font>
+                        <Font name="Cooper Black" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="Backbtn" mnemonicParsing="false" onAction="#Backbtn" style="-fx-background-color: gold; -fx-cursor: hand;" text="Kembali" textFill="WHITE">
+                     <effect>
+                        <Glow level="0.69">
+                           <input>
+                              <DropShadow>
+                                 <input>
+                                    <Lighting>
+                                       <bumpInput>
+                                          <Shadow />
+                                       </bumpInput>
+                                       <light>
+                                          <Light.Distant />
+                                       </light>
+                                    </Lighting>
+                                 </input>
+                              </DropShadow>
+                           </input>
+                        </Glow>
+                     </effect>
+                     <font>
+                        <Font name="Cooper Black" size="12.0" />
+                     </font>
+                  </Button>
+               </children></AnchorPane>
+      </content>
+    </Tab>
+  </tabs>
+</TabPane>

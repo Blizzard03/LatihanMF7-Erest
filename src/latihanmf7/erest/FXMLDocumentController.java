@@ -18,7 +18,9 @@ import javafx.scene.control.TextField;
  * @author Blizzard
  */
 public class FXMLDocumentController implements Initializable {
-@FXML
+
+    Erest est = new Erest();
+    @FXML
     private TextField customerNameField;
 
     @FXML
@@ -82,5 +84,5 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         //Todo
     }
-    
+
 }
